@@ -3,6 +3,18 @@
 // 1. Importar as ferramentas necessárias
 const express = require('express');
 const sqlite3 = require('sqlite3').verbose();
+const { nanoid } = require('nanoid');
+const cors = require('cors'); // <--- ADICIONE ESTA LINHA
+
+// 2. Configurações iniciais
+const app = express();
+app.use(cors()); // <--- ADICIONE ESTA LINHA AQUI
+const PORT = process.env.PORT || 3000;
+// ... resto do seu código server.js continua igual
+
+// 1. Importar as ferramentas necessárias
+const express = require('express');
+const sqlite3 = require('sqlite3').verbose();
 const { nanoid } = require('nanoid'); // nanoid v5 é ESM, vamos usar a v4 que é CJS com require
 // Se o comando acima der erro, instale a v4: npm install nanoid@4
 // E use: const { nanoid } = require('nanoid');

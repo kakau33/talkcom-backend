@@ -76,7 +76,7 @@
 
         try {
             // A MUDANÇA ESTÁ AQUI: Chamando nosso próprio backend!
-            const response = await fetch('/shorten', {
+            const response = await fetch('https://talkcom-api-kakau.onrender.com/shorten', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
