@@ -1,0 +1,223 @@
+/* ---- Reset e Configurações Gerais ---- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ---- Cabeçalho ---- */
+header {
+    background-color: #fff;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #2a7de1;
+}
+
+/* ---- Seção Principal (Hero) ---- */
+.hero {
+    text-align: center;
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.hero h2 {
+    font-size: 42px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #222;
+}
+
+.hero .subtitle {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.shortener-box {
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.shortener-box input {
+    flex-grow: 1;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+    outline: none;
+}
+
+.shortener-box button {
+    padding: 15px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #2a7de1;
+    border: none;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.shortener-box button:hover {
+    background-color: #1e5a9e;
+}
+
+/* ---- Seção de Benefícios (Features) ---- */
+.features {
+    padding: 80px 0;
+}
+
+.features .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    text-align: center;
+}
+
+.feature-card {
+    background-color: #fff;
+    padding: 40px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card .icon {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: #555;
+    font-size: 15px;
+}
+
+/* ---- Rodapé ---- */
+footer {
+    text-align: center;
+    padding: 30px 0;
+    background-color: #fff;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #777;
+}
+
+/* ---- Estilos para a área de resultado ---- */
+#result-area {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #eef5ff;
+    border-radius: 8px;
+    min-height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+#result-area:empty {
+    padding: 0;
+    min-height: 0;
+}
+
+#result-area p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.short-link-wrapper {
+    display: flex;
+    align-items: center;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 5px 10px;
+    margin-top: 10px;
+}
+
+.short-link-wrapper a {
+    font-weight: 600;
+    color: #2a7de1;
+    text-decoration: none;
+    padding-right: 15px;
+}
+
+.short-link-wrapper button {
+    padding: 8px 15px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#result-area .error {
+    color: #d93025;
+    font-weight: 600;
+}
+
+/* ---- Responsividade para Telas Menores ---- */
+@media (max-width: 768px) {
+    .hero h2 {
+        font-size: 32px;
+    }
+
+    .shortener-box {
+        flex-direction: column;
+        box-shadow: none;
+    }
+
+    .shortener-box input {
+        border-radius: 8px;
+        margin-bottom: 10px;
+        text-align: center;
+        border: 1px solid #ccc;
+    }
+
+    .shortener-box button {
+        border-radius: 8px;
+    }
+}

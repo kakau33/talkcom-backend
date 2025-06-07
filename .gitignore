@@ -1,0 +1,9 @@
+# Dependências
+node_modules
+
+# Arquivos de ambiente e logs
+.env
+npm-debug.log
+
+# Banco de dados local
+*.db

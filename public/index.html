@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>talkcom.me - Crie Links Curtos e Personalizados</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1 class="logo">talkcom.me</h1>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Seus links, sua marca. Mais cliques, mais controle.</h2>
+                <p class="subtitle">Crie links curtos e personalizados que geram resultados. Comece agora.</p>
+                <div class="shortener-box">
+                    <input type="url" placeholder="Cole sua URL longa aqui..." id="url-input">
+                    <button id="shorten-btn">Encurtar</button>
+                </div>
+                <div id="result-area"></div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="feature-card">
+                    <div class="icon">📊</div>
+                    <h3>Rastreie Cliques e Conversões</h3>
+                    <p>Acompanhe o desempenho dos seus links com métricas importantes para obter insights valiosos sobre suas campanhas.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">✨</div>
+                    <h3>Crie Links Curtos e Personalizados</h3>
+                    <p>Use sua própria marca ou palavras-chave relevantes para criar links que se destaquem e são fáceis de lembrar e compartilhar.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon">🎨</div>
+                    <h3>Personalização com Sua Marca</h3>
+                    <p>Personalize seus links com seu logotipo e cores para que eles se destaquem e reflitam a identidade da sua empresa.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 talkcom.me - Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+    const shortenButton = document.getElementById('shorten-btn');
+    const urlInput = document.getElementById('url-input');
+    const resultArea = document.getElementById('result-area');
+
+    shortenButton.addEventListener('click', async () => {
+        const longUrl = urlInput.value;
+
+        if (!longUrl || !longUrl.startsWith('http')) {
+            resultArea.innerHTML = `<p class="error">Por favor, insira uma URL válida (ex: https://...)</p>`;
+            return;
+        }
+
+        shortenButton.disabled = true;
+        shortenButton.innerText = 'Encurtando...';
+        resultArea.innerHTML = '';
+
+        try {
+            // A MUDANÇA ESTÁ AQUI: Chamando nosso próprio backend!
+            const response = await fetch('/shorten', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ longUrl: longUrl }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Algo deu errado.');
+            }
+
+            const shortUrl = data.shortUrl;
+
+            resultArea.innerHTML = `
+                <p>Seu link encurtado está pronto!</p>
+                <div class="short-link-wrapper">
+                    <a href="${shortUrl}" target="_blank">${shortUrl}</a>
+                    <button id="copy-btn">Copiar</button>
+                </div>
+            `;
+
+            document.getElementById('copy-btn').addEventListener('click', (e) => {
+                navigator.clipboard.writeText(shortUrl);
+                e.target.innerText = 'Copiado!';
+                setTimeout(() => { e.target.innerText = 'Copiar'; }, 2000);
+            });
+
+        } catch (error) {
+            resultArea.innerHTML = `<p class="error">${error.message}</p>`;
+        } finally {
+            shortenButton.disabled = false;
+            shortenButton.innerText = 'Encurtar';
+        }
+    });
+</script>
+</body>
+</html>
